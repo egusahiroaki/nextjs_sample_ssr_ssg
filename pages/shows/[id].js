@@ -40,7 +40,6 @@ const Post = (props) => {
 
 export async function getServerSideProps(context) {
   console.log(`個別ページ getServerSideProps`);
-  //   console.log(context);
   const id = context.params.id;
   console.log(`id: ${id}`);
 
