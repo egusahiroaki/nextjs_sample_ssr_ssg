@@ -45,7 +45,16 @@ export async function getServerSideProps(context) {
 
   const res = await fetch(`https://api.tvmaze.com/shows/${id}`);
   const show = await res.json();
+
   const buildtime = new Date().toString();
+  console.log("show");
+  console.log(show);
+  if (show.status == 404) {
+    return {
+      notFound: true,
+    };
+  }
+
   return {
     props: {
       test: "個別ページ getServerSidePropsです",
