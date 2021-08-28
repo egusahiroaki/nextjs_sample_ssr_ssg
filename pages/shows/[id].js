@@ -10,39 +10,22 @@ const Post = (props) => (
   </div>
 );
 
-// Post.getInitialProps = async function (context) {
-//   const { id } = context.query;
-//   const res = await fetch(`https://api.tvmaze.com/shows/${id}`);
-//   const show = await res.json();
-//   console.log(`Fetched show: ${show.name}`);
-//   return { show };
-// };
-
-export async function getStaticProps(context) {
-  console.log(`個別ページ getStaticProps`);
-  console.log(context);
+export async function getServerSideProps(context) {
+  console.log(`個別ページ getServerSideProps`);
+  //   console.log(context);
   const id = context.params.id;
   console.log(`id: ${id}`);
 
   const res = await fetch(`https://api.tvmaze.com/shows/${id}`);
   const show = await res.json();
-  console.log(show);
   const buildtime = new Date().toString();
   return {
     props: {
-      test: "個別ページ getStaticPropsです",
+      test: "個別ページ getServerSidePropsです",
       show,
       buildtime,
     },
   };
-}
-
-export async function getStaticPaths() {
-  const res = await fetch("https://api.tvmaze.com/search/shows?q=batman");
-  const data = await res.json();
-
-  const paths = data.map((d) => `/shows/${d.show.id}`);
-  return { paths, fallback: false };
 }
 
 export default Post;

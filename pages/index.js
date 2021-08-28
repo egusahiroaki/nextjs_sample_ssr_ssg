@@ -35,8 +35,23 @@ const Index = (props) => (
 //   return { shows: data.map((entry) => entry.show) };
 // }
 
-export async function getStaticProps() {
-  console.log(`getStaticProps`);
+// export async function getStaticProps() {
+//   console.log(`getStaticProps`);
+//   const res = await fetch("https://api.tvmaze.com/search/shows?q=batman");
+//   const data = await res.json();
+//   console.log(`Show data fetched. Count: ${data.length}`);
+//   const buildtime = new Date().toString();
+//   return {
+//     props: {
+//       test: "getStaticPropsです",
+//       shows: data.map((entry) => entry.show),
+//       buildtime,
+//     },
+//   };
+// }
+
+export async function getServerSideProps() {
+  console.log(`getServerSideProps`);
   const res = await fetch("https://api.tvmaze.com/search/shows?q=batman");
   const data = await res.json();
   console.log(`Show data fetched. Count: ${data.length}`);
