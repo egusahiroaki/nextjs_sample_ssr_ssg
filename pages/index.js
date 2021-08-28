@@ -58,7 +58,7 @@ export async function getServerSideProps() {
   const buildtime = new Date().toString();
   return {
     props: {
-      test: "getStaticPropsです",
+      test: "getServerSidePropsです",
       shows: data.map((entry) => entry.show),
       buildtime,
     },
